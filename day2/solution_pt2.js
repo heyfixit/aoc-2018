@@ -4,7 +4,7 @@ fs.readFile('input.txt', 'utf8', (err, data) => {
   data = data.split("\n").map((e) => e.split(''));
   let foundIndex = -1;
   let thisOne;
-  while(foundIndex == -1 && data.length > 0) {
+  while(foundIndex === -1 && data.length > 0) {
     thisOne = data.shift();
     foundIndex = data.findIndex((element) => {
       let diffCount = 0;
