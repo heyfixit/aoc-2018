@@ -52,5 +52,5 @@ if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
     end
   end
 
-  puts "# of regions with < 1000 total distance: #{region_point_count}"
+  puts "# of regions with < 10000 total distance: #{region_point_count}"
 end
