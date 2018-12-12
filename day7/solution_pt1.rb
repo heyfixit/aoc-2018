@@ -1,17 +1,8 @@
 if $PROGRAM_NAME == __FILE__
 
-  input = %(
-Step C must be finished before step A can begin.
-Step C must be finished before step F can begin.
-Step A must be finished before step B can begin.
-Step A must be finished before step D can begin.
-Step B must be finished before step E can begin.
-Step D must be finished before step E can begin.
-Step F must be finished before step E can begin.
-  )
-
+  input = File.readlines('input.txt')
   big_hash = Hash.new { |hash, key| hash[key] = [] }
-  input.strip.split("\n").each do |l|
+  input.each do |l|
     label = /step (.) can begin./.match(l)[1]
     prereq = /^Step (.) must/.match(l)[1]
     big_hash[label] << prereq
