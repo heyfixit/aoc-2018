@@ -1,9 +1,11 @@
 class Coordinate
   property label
   property closest_count
+  property area_infinite
   def initialize(coord : Array(Int32), @label : String = "")
     @coord = coord
     @closest_count = 0
+    @area_infinite = false
   end
 
   def x
@@ -51,10 +53,20 @@ if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
         if sorted[0]["distance"] == sorted[1]["distance"]
           print "."
         else
-          print input[sorted[0]["index"]].label.downcase
+          this_coord = input[sorted[0]["index"]]
+          print this_coord.label.downcase
+          if x == x_min || x == x_max || y == y_min || y == y_max
+            this_coord.area_infinite = true
+          else
+            this_coord.closest_count += 1
+          end
         end
       end
     end
     print "\n"
   end
+
+  input.reject! {|c| c.area_infinite}
+  winner = input.sort_by {|c| c.closest_count}.last
+  puts "Winner is #{winner.label}(#{winner.x}, #{winner.y}) with #{winner.closest_count} closest points."
 end
