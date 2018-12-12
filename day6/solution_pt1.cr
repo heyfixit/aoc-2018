@@ -23,15 +23,15 @@ class Coordinate
 end
 
 if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
-  labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  # input = File.read_lines("input.txt").map do |l|
-  #   l.split(", ")
-  # end
-
-  # example input
-  input = [[1,1],[1,6],[8,3],[3,4],[5,5],[8,9]].map do |c|
-    Coordinate.new(c, labels.shift)
+  input = File.read_lines("input.txt").map do |l|
+    Coordinate.new(l.split(", ").map { |n| n.to_i })
   end
+
+  # labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  # example input
+  # input = [[1,1],[1,6],[8,3],[3,4],[5,5],[8,9]].map do |c|
+  #   Coordinate.new(c, labels.shift)
+  # end
 
   x_min = input.sort_by { |a| a.x }.first.x
   x_max = input.sort_by { |a| a.x }.last.x
@@ -50,9 +50,7 @@ if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
         end
 
         sorted = distances.sort_by { |a| a["distance"] }
-        if sorted[0]["distance"] == sorted[1]["distance"]
-          print "."
-        else
+        unless sorted[0]["distance"] == sorted[1]["distance"]
           this_coord = input[sorted[0]["index"]]
           print this_coord.label.downcase
           if x == x_min || x == x_max || y == y_min || y == y_max
@@ -63,7 +61,6 @@ if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
         end
       end
     end
-    print "\n"
   end
 
   input.reject! {|c| c.area_infinite}
