@@ -24,15 +24,15 @@ class Coordinate
 end
 
 if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
-  # input = File.read_lines("input.txt").map do |l|
-  #   Coordinate.new(l.split(", ").map { |n| n.to_i })
-  # end
-
-  labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
-  # example input
-  input = [[1,1],[1,6],[8,3],[3,4],[5,5],[8,9]].map do |c|
-    Coordinate.new(c, labels.shift)
+  input = File.read_lines("input.txt").map do |l|
+    Coordinate.new(l.split(", ").map { |n| n.to_i })
   end
+
+  # labels = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+  # example input
+  # input = [[1,1],[1,6],[8,3],[3,4],[5,5],[8,9]].map do |c|
+  #   Coordinate.new(c, labels.shift)
+  # end
 
   x_min = input.sort_by { |a| a.x }.first.x
   x_max = input.sort_by { |a| a.x }.last.x
@@ -46,11 +46,11 @@ if PROGRAM_NAME.index(File.basename(__FILE__, ".cr"))
       input.each do |c|
         this_total_dist += c.distance_to([x,y])
       end
-      if this_total_dist < 32
+      if this_total_dist < 10000
         region_point_count += 1
       end
     end
   end
 
-  puts "# of regeions with < 1000 total distance: #{region_point_count}"
+  puts "# of regions with < 1000 total distance: #{region_point_count}"
 end
