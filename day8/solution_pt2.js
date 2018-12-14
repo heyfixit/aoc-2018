@@ -54,7 +54,7 @@ function calcRootValue(node) {
 }
 
 fs.readFile('input.txt', 'utf8', (err, data) => {
-  data = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2";
+  // data = "2 3 0 3 10 11 12 1 1 0 1 99 2 1 1 2";
   split_data = data.split(" ").map((d) => parseInt(d));
 
   tree = parseTree(split_data);
