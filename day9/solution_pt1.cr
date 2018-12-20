@@ -1,14 +1,14 @@
-# input = [
-#   { "players" => 10, "last_marble" => 1618 },
-#   { "players" => 13, "last_marble" => 7999 },
-#   { "players" => 17, "last_marble" => 1104 },
-#   { "players" => 21, "last_marble" => 6111 },
-#   { "players" => 30, "last_marble" => 5807 },
-# ]
-
 input = [
-  { "players" => 9, "last_marble" => 25 },
+  { "players" => 10, "last_marble" => 1618 },
+  { "players" => 13, "last_marble" => 7999 },
+  { "players" => 17, "last_marble" => 1104 },
+  { "players" => 21, "last_marble" => 6111 },
+  { "players" => 30, "last_marble" => 5807 },
 ]
+
+# input = [
+#   { "players" => 9, "last_marble" => 25 },
+# ]
 
 input.each do |game|
   current_marble = 1
@@ -41,7 +41,7 @@ input.each do |game|
     end
     current_player += 1
     current_marble += 1
-    puts circle
+    # puts circle
   end
-  puts scores
+  puts scores.sort.last
 end
